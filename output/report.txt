@@ -1,0 +1,140 @@
+===============================================
+   RAPPORT D'ANALYSE - JOUEURS DE FOOTBALL
+===============================================
+
+📊 STATISTIQUES DE PARSING
+---------------------------
+- Entrées totales lues      : 10000
+- Entrées valides           : 10000
+- Erreurs de parsing        : 0
+- Doublons supprimés        : 0
+
+⚽ TOP 10 - BUTEURS
+-------------------
+ 1. João Fernandes            : 45 buts en 17 matchs
+ 2. João Fernandes 1          : 45 buts en 17 matchs
+ 3. João Fernandes 2          : 45 buts en 17 matchs
+ 4. João Fernandes 3          : 45 buts en 17 matchs
+ 5. João Fernandes 4          : 45 buts en 17 matchs
+ 6. João Fernandes 5          : 45 buts en 17 matchs
+ 7. João Fernandes 6          : 45 buts en 17 matchs
+ 8. João Fernandes 7          : 45 buts en 17 matchs
+ 9. João Fernandes 8          : 45 buts en 17 matchs
+10. João Fernandes 9          : 45 buts en 17 matchs
+
+🎯 TOP 10 - PASSEURS
+---------------------
+ 1. Jack Silva                : 20 passes en 29 matchs
+ 2. Jadon Rice                : 20 passes en 36 matchs
+ 3. Jack Silva 1              : 20 passes en 29 matchs
+ 4. Jadon Rice 1              : 20 passes en 36 matchs
+ 5. Jack Silva 2              : 20 passes en 29 matchs
+ 6. Jadon Rice 2              : 20 passes en 36 matchs
+ 7. Jack Silva 3              : 20 passes en 29 matchs
+ 8. Jadon Rice 3              : 20 passes en 36 matchs
+ 9. Jack Silva 4              : 20 passes en 29 matchs
+10. Jadon Rice 4              : 20 passes en 36 matchs
+
+💰 TOP 10 - VALEUR MARCHANDE
+-----------------------------
+ 1. Vinicius Alexander-Arnold : 179,00 M€
+ 2. Vinicius Alexander-Arnold 1 : 179,00 M€
+ 3. Vinicius Alexander-Arnold 2 : 179,00 M€
+ 4. Vinicius Alexander-Arnold 3 : 179,00 M€
+ 5. Vinicius Alexander-Arnold 4 : 179,00 M€
+ 6. Vinicius Alexander-Arnold 5 : 179,00 M€
+ 7. Vinicius Alexander-Arnold 6 : 179,00 M€
+ 8. Vinicius Alexander-Arnold 7 : 179,00 M€
+ 9. Vinicius Alexander-Arnold 8 : 179,00 M€
+10. Vinicius Alexander-Arnold 9 : 179,00 M€
+
+💵 TOP 10 - SALAIRES
+--------------------
+ 1. Romelu Bellingham         : 48,50 M€/an
+ 2. Romelu Bellingham 1       : 48,50 M€/an
+ 3. Romelu Bellingham 2       : 48,50 M€/an
+ 4. Romelu Bellingham 3       : 48,50 M€/an
+ 5. Romelu Bellingham 4       : 48,50 M€/an
+ 6. Romelu Bellingham 5       : 48,50 M€/an
+ 7. Romelu Bellingham 6       : 48,50 M€/an
+ 8. Romelu Bellingham 7       : 48,50 M€/an
+ 9. Romelu Bellingham 8       : 48,50 M€/an
+10. Romelu Bellingham 9       : 48,50 M€/an
+
+🏆 RÉPARTITION PAR LIGUE
+-------------------------
+- Ligue 1                   : 2500 joueurs
+- Premier League            : 2500 joueurs
+- La Liga                   : 2000 joueurs
+- Serie A                   : 1800 joueurs
+- Bundesliga                : 1200 joueurs
+
+⚽ RÉPARTITION PAR POSTE
+------------------------
+- Forward                   : 2800 joueurs
+- Defender                  : 2500 joueurs
+- Goalkeeper                : 2400 joueurs
+- Midfielder                : 2300 joueurs
+
+📊 MOYENNES PAR POSTE
+----------------------
+ÂGE MOYEN :
+- Defender                  : 29,04 ans
+- Forward                   : 27,07 ans
+- Goalkeeper                : 27,88 ans
+- Midfielder                : 26,57 ans
+
+BUTS PAR MATCH (moyenne) :
+- Forward                   : 1,102 buts
+- Midfielder                : 0,459 buts
+- Defender                  : 0,157 buts
+- Goalkeeper                : 0,000 buts
+
+🟨 DISCIPLINE
+--------------
+- Total cartons jaunes      : 47300
+- Total cartons rouges      : 9500
+- Poste le plus discipliné  : Midfielder
+- Poste le moins discipliné : Goalkeeper
+
+BONUS - EFFICACITÉ & QUALITÉ/PRIX
+-----------------------------------
+Top 10 efficacité (buts/match, min 10 matchs) :
+ 1. N'Golo Haaland            | Union Berlin         | 3,100
+ 2. N'Golo Haaland 1          | Union Berlin         | 3,100
+ 3. N'Golo Haaland 2          | Union Berlin         | 3,100
+ 4. N'Golo Haaland 3          | Union Berlin         | 3,100
+ 5. N'Golo Haaland 4          | Union Berlin         | 3,100
+ 6. N'Golo Haaland 5          | Union Berlin         | 3,100
+ 7. N'Golo Haaland 6          | Union Berlin         | 3,100
+ 8. N'Golo Haaland 7          | Union Berlin         | 3,100
+ 9. N'Golo Haaland 8          | Union Berlin         | 3,100
+10. N'Golo Haaland 9          | Union Berlin         | 3,100
+
+Top 10 bonnes affaires (buts/salaire) :
+ 1. Neymar Ramos              | Real Betis           | 13,076923
+ 2. Neymar Ramos 1            | Real Betis           | 13,076923
+ 3. Neymar Ramos 2            | Real Betis           | 13,076923
+ 4. Neymar Ramos 3            | Real Betis           | 13,076923
+ 5. Neymar Ramos 4            | Real Betis           | 13,076923
+ 6. Neymar Ramos 5            | Real Betis           | 13,076923
+ 7. Neymar Ramos 6            | Real Betis           | 13,076923
+ 8. Neymar Ramos 7            | Real Betis           | 13,076923
+ 9. Neymar Ramos 8            | Real Betis           | 13,076923
+10. Neymar Ramos 9            | Real Betis           | 13,076923
+
+Stats par ligue (âge moyen, buts moyens) :
+- Bundesliga                : âge=28,58 | buts=18,08
+- La Liga                   : âge=26,60 | buts=8,55
+- Ligue 1                   : âge=26,60 | buts=6,88
+- Premier League            : âge=29,00 | buts=10,96
+- Serie A                   : âge=27,72 | buts=8,00
+
+Ligue la plus productive : Bundesliga
+
+⏱️  PERFORMANCE
+---------------
+- Temps de traitement       : 2,849 secondes
+- Entrées/seconde           : 3510,00
+
+===============================================
