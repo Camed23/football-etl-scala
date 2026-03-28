@@ -1,51 +1,25 @@
-# Football ETL – Documentation Technique Complète
+# Football ETL Pipeline in Scala
 
-## 1. Présentation du projet
-
-Ce projet consiste à développer un **pipeline ETL (Extract – Transform – Load)** en **Scala**, appliqué à l’analyse de données de joueurs de football.
-
-À partir d’un fichier JSON contenant des données potentiellement incorrectes ou incomplètes, le système :
-
-* charge les données,
-* gère les erreurs de parsing,
-* valide et nettoie les entrées,
-* calcule des statistiques avancées,
-* génère un **rapport d’analyse structuré**.
-
-Le projet met l’accent sur :
-
-* la **programmation fonctionnelle**,
-* la **gestion explicite des erreurs**,
-* la **modularité du code**,
-* la **traçabilité des transformations de données**.
+A modular **ETL (Extract – Transform – Load) pipeline** built in Scala to process, validate, analyze, and generate reports from football player data stored in JSON format.
 
 ---
 
-## 2. Dataset utilisé
+## Overview
 
-Le dataset contient des informations sur des **joueurs de football professionnels**, incluant notamment :
+This project processes potentially incomplete or inconsistent football player data through a robust data pipeline:
 
-* informations personnelles (âge, nationalité),
-* club et ligue,
-* statistiques sportives (buts, passes, matchs joués),
-* discipline (cartons jaunes et rouges),
-* données économiques (valeur marchande, salaire).
+* **Extract** raw JSON data
+* **Transform** by validating and cleaning records
+* **Analyze** data with advanced statistics and rankings
+* **Load / Output** structured reports
 
-### Fichiers utilisés
-
-* `data_clean.json` : données nettoyées
-* `data_dirty.json` : données contenant des erreurs de parsing
-* `data_large.json` : dataset volumineux utilisé pour mesurer les performances
-
-Certaines valeurs peuvent être absentes (ex. salaire, valeur marchande), ce qui justifie l’utilisation de types optionnels.
+The project focuses on **data quality**, **functional programming**, and **modular pipeline design**.
 
 ---
 
-## 3. Architecture globale du pipeline
+## Architecture
 
-Le projet est organisé selon une architecture modulaire claire :
-
-```
+```text
 DataLoader
    ↓
 DataValidator
@@ -57,212 +31,168 @@ ReportGenerator
 Main
 ```
 
-### Rôle des modules
+### Modules
 
-| Module            | Rôle                                                       |
-| ----------------- | ---------------------------------------------------------- |
-| `DataLoader`      | Lecture du fichier JSON et gestion des erreurs de parsing  |
-| `DataValidator`   | Validation métier et suppression des doublons              |
-| `StatsCalculator` | Calcul des statistiques, agrégations, classements et bonus |
-| `ReportGenerator` | Construction du rapport final et écriture des fichiers     |
-| `Main`            | Orchestration du pipeline ETL                              |
+* **DataLoader**
+  Reads JSON files and safely handles parsing errors.
+
+* **DataValidator**
+  Applies business rules and removes duplicates.
+
+* **StatsCalculator**
+  Computes rankings, aggregations, and advanced metrics.
+
+* **ReportGenerator**
+  Builds structured output files.
+
+* **Main**
+  Orchestrates the ETL pipeline.
 
 ---
 
-## 4. Modèle de données
+## Tech Stack
 
-### 4.1 Données d’entrée
+* **Scala**
+* **sbt**
+* **Circe** (JSON parsing)
+* **MUnit** (unit testing)
+* Functional programming principles (`map`, `flatMap`, `groupBy`, `fold`)
+* Error handling with `Either`, `Option`, and `Try`
 
-```scala
-case class Player(
-  id: Int,
-  name: String,
-  age: Int,
-  nationality: String,
-  position: String,
-  club: String,
-  league: String,
-  goalsScored: Int,
-  assists: Int,
-  matchesPlayed: Int,
-  yellowCards: Int,
-  redCards: Int,
-  marketValue: Option[Double],
-  salary: Option[Double]
-)
+---
+
+## Features
+
+* Safe JSON decoding and parsing error tracking
+* Data validation based on business rules
+* Duplicate removal using unique player ID
+* Top 10 rankings:
+
+  * scorers
+  * assisters
+  * market values
+  * salaries
+* Aggregations by league and position
+* Discipline statistics (yellow/red cards)
+* Advanced analytics:
+
+  * offensive efficiency (goals per match)
+  * value-for-money ratio (goals per salary)
+  * league-level statistics
+* Structured report generation
+* Unit tests ensuring correctness of calculations
+
+---
+
+## Project Structure
+
+```text
+.
+├── data/              # input datasets (clean, dirty, large)
+├── output/            # generated results
+├── src/               # source code
+├── project/           # sbt configuration
+├── build.sbt
+├── README.md
+└── .gitignore
 ```
 
-L’utilisation de `Option[Double]` permet de gérer les **valeurs manquantes** sans utiliser de `null`.
-
 ---
 
-### 4.2 Rapport final
+## Run the Project
 
-Toutes les analyses sont regroupées dans une structure unique :
-
-```scala
-case class AnalysisReport(
-  playerStats: PlayerStats,
-  topScorers: List[TopScorer],
-  topAssisters: List[TopAssister],
-  topMarketValues: List[TopMarketValue],
-  topSalaries: List[TopSalary],
-  aggregationReport: AggregationReport,
-  disciplineStats: DisciplineStats,
-  bonusReport: BonusReport
-)
-```
-
----
-
-## 5. Fonctionnement du pipeline ETL
-
-### 5.1 Extraction – DataLoader
-
-* Lecture du fichier JSON
-* Décodage sécurisé via Circe
-* Gestion des erreurs avec `Either`
-* Comptage des erreurs de parsing
-
-### 5.2 Transformation – DataValidator
-
-* Validation des règles métier :
-
-  * âge entre 16 et 45 ans
-  * matchs joués > 0
-  * buts ≥ 0
-  * poste valide
-* Suppression des doublons basée sur l’identifiant `id`
-
-### 5.3 Analyse – StatsCalculator
-
-Calculs réalisés :
-
-* statistiques de parsing,
-* top 10 (buteurs, passeurs, valeurs marchandes, salaires),
-* agrégations par ligue et par poste,
-* statistiques de discipline,
-* **bonus** :
-
-  * efficacité offensive (buts / matchs),
-  * rapport qualité/prix (buts / salaire),
-  * statistiques par ligue (âge moyen, buts moyens, ligue la plus productive).
-
-### 5.4 Génération du rapport – ReportGenerator
-
-* Construction du `AnalysisReport`
-* Écriture de :
-
-  * `results.json`
-  * `report.txt`
-* Gestion des erreurs d’écriture avec `Try`
-
----
-
-## 6. Compilation et exécution du projet
-
-### Prérequis
+### Requirements
 
 * Java 11+
 * sbt
-* Scala 3 (ou Scala 2.13 selon configuration)
+* Scala
 
-### Compilation
+### Commands
 
 ```bash
 sbt compile
-```
-
-### Exécution
-
-```bash
 sbt run
-```
-
-### Exécution des tests unitaires
-
-```bash
 sbt test
 ```
 
 ---
 
-## 7. Tests unitaires
+## Outputs
 
-Des **tests unitaires avec MUnit** ont été implémentés afin de valider la logique métier du module `StatsCalculator`.
+The pipeline generates:
 
-Les tests couvrent notamment :
-
-* l’efficacité offensive,
-* le rapport qualité/prix,
-* les statistiques par ligue,
-* les filtres sur les données.
-
-Ces tests garantissent la fiabilité des calculs indépendamment du pipeline ETL.
+* `results.json` → structured analytical results
+* `report.txt` → human-readable summary
 
 ---
 
-## 8. Performances
+## ⚡ Performance
 
-Des mesures ont été effectuées sur le fichier **`data_large.json`**.
+Tested on a large dataset:
 
-### Résultats observés
-
-* Temps d’exécution : **≈ 2.849 secondes**
-* Débit : **≈ 3510 entrées/seconde**
-
-Les métriques sont affichées dans la console et intégrées dans `report.txt`.
+* Execution time: **~2.8 seconds**
+* Throughput: **~3500 records/second**
 
 ---
 
-## 9. Choix techniques et justification
+## Key Design Choices
 
-### Programmation fonctionnelle
+### Functional Programming
 
-* Utilisation de `map`, `flatMap`, `groupBy`, `fold`
-* Données immuables
-* Fonctions pures
+* Immutable data structures
+* Pure functions
+* Use of `map`, `flatMap`, `fold`, `groupBy`
 
-### Gestion des erreurs
+### Error Handling
 
-* `Either` pour les erreurs critiques (I/O, parsing)
-* `Option` pour les valeurs facultatives
-* Aucun `null` utilisé
+* `Either` → critical errors (parsing, I/O)
+* `Option` → missing values
+* `Try` → safe file writing
+* No use of `null`
 
-### Organisation du code
+### Data Quality
 
-* Séparation claire des responsabilités
-* Réutilisabilité via `StatsCalculator`
-* Point de sortie unique : `AnalysisReport`
-
----
-
-## 10. Difficultés rencontrées et solutions
-
-### Gestion des erreurs de parsing
-
-**Problème :** données JSON invalides
-**Solution :** décodage individuel et comptage des erreurs sans interrompre le pipeline
-
-### Données manquantes
-
-**Problème :** salaires et valeurs absentes
-**Solution :** utilisation de `Option` et `flatMap`
-
-### Doublons
-
-**Problème :** joueurs dupliqués
-**Solution :** déduplication basée sur l’identifiant
-
-### Lisibilité du pipeline
-
-**Problème :** logique complexe
-**Solution :** séparation claire entre calcul, orchestration et génération de rapport
+* Validation rules (age, matches, stats consistency)
+* Handling missing values
+* Deduplication logic
 
 ---
 
-## 11. Conclusion
+## What I Learned
 
-Ce projet met en œuvre un **pipeline ETL complet**, robuste et extensible, illustrant les principes fondamentaux de la programmation fonctionnelle en Scala.
+Through this project, I strengthened my skills in:
 
-La gestion explicite des erreurs, l’ajout de statistiques avancées et de tests unitaires, ainsi que la génération de rapports structurés permettent d’obtenir une solution fiable, lisible et adaptée à l’analyse de données réelles.
+* Designing modular **data pipelines**
+* Writing clean and maintainable **Scala code**
+* Applying **functional programming concepts**
+* Handling real-world **data quality issues**
+* Building **analytical reports from raw data**
+* Writing **unit tests for data logic**
+
+---
+
+## Why This Project Matters
+
+This project demonstrates key Data Engineering concepts:
+
+* ETL pipeline design
+* Data validation and cleaning
+* Scalable analytics computation
+* Structured data outputs
+* Robust error handling
+
+These concepts are directly applicable to real-world data systems.
+
+---
+
+### 👤 Author
+
+**Farid ABOUBAKARI**
+Engineering Student – Big Data & Machine Learning
+EFREI Paris
+
+---
+
+### ⭐ If you found this project interesting
+
+Feel free to star the repository or connect with me on LinkedIn.
